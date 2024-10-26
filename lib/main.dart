@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:krushisevak/contoller/home_controller.dart';
 import 'package:krushisevak/pages/homa_screen.dart';
-
+import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(HomeController());
   runApp(const MyApp());
 }
 
