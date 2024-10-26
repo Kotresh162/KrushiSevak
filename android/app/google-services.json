@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "856887330465",
+    "project_id": "krushisevak-58548",
+    "storage_bucket": "krushisevak-58548.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856887330465:android:62e728897cc9a8816012e0",
+        "android_client_info": {
+          "package_name": "com.example.krushisevak"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbs3OS2Yz8t57sT880UH2Swx13GsVpkJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
