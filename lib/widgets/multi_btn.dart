@@ -1,16 +1,11 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
-class MultiBtn extends StatelessWidget {
-  final List<String> items = [
-  'Item1',
-  'Item2',
-  'Item3',
-  'Item4',
-];
 List<String> selectedItems = [];
-
-   MultiBtn({super.key});
+class MultiBtn extends StatelessWidget {
+  final List<String> items;
+  final Function(List<String>) onselectedChange;
+   const MultiBtn({super.key, required this.items, required this.onselectedChange});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +32,7 @@ List<String> selectedItems = [];
                     return InkWell(
                       onTap: () {
                         isSelected ? selectedItems.remove(item) : selectedItems.add(item);
+                        onselectedChange(selectedItems);
                         menuSetState(() {});
                       },
                       child: Container(

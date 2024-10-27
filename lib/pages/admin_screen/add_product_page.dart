@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:krushisevak/contoller/home_controller.dart';
+import 'package:krushisevak/contoller/admin_controller/home_controller.dart';
 import 'package:krushisevak/widgets/drop_down_btn.dart';
 
 class AddProductPage extends StatefulWidget {
@@ -28,12 +28,13 @@ class _AddProductPageState extends State<AddProductPage> {
                   Text(
                     'Add New Product',
                     style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold),
+                      fontSize: 25,
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  SizedBox(height: 20), // Space between title and text field
-        
+                  SizedBox(height: 20),
+
                   // Product Name TextField
                   TextField(
                     controller: ctrl.textnamectrl,
@@ -41,42 +42,36 @@ class _AddProductPageState extends State<AddProductPage> {
                       labelText: 'Product Name',
                       labelStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.circular(20), // Set border radius
+                        borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.grey, width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(
-                            color: Colors.blue,
-                            width: 2), // Change color when focused
+                        borderSide: BorderSide(color: Colors.blue, width: 2),
                       ),
                     ),
                   ),
-                  SizedBox(height: 20), // Space between text fields
-        
+                  SizedBox(height: 20),
+
                   // Product Description TextField
                   TextField(
-                    maxLines: 4, // Allows for multiple lines of text
+                    maxLines: 4,
                     controller: ctrl.textdescriptionctrl,
                     decoration: InputDecoration(
                       labelText: 'Product Description',
                       labelStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.circular(20), // Set border radius
+                        borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.grey, width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(
-                            color: Colors.blue,
-                            width: 2), // Change color when focused
+                        borderSide: BorderSide(color: Colors.blue, width: 2),
                       ),
                     ),
                   ),
-                  SizedBox(height: 20), // Space between text fields
-        
+                  SizedBox(height: 20),
+
                   // Image URL TextField
                   TextField(
                     controller: ctrl.textimagectrl,
@@ -84,20 +79,17 @@ class _AddProductPageState extends State<AddProductPage> {
                       labelText: 'Image URL',
                       labelStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.circular(20), // Set border radius
+                        borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.grey, width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(
-                            color: Colors.blue,
-                            width: 2), // Change color when focused
+                        borderSide: BorderSide(color: Colors.blue, width: 2),
                       ),
                     ),
                   ),
-                  SizedBox(height: 20), // Space between text fields
-        
+                  SizedBox(height: 20),
+
                   // Price TextField
                   TextField(
                     controller: ctrl.textpricectrl,
@@ -105,68 +97,74 @@ class _AddProductPageState extends State<AddProductPage> {
                       labelText: 'Price',
                       labelStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
-                        borderRadius:
-                            BorderRadius.circular(20), // Set border radius
+                        borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(color: Colors.grey, width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(
-                            color: Colors.blue,
-                            width: 2), // Change color when focused
+                        borderSide: BorderSide(color: Colors.blue, width: 2),
                       ),
                     ),
-                    keyboardType: TextInputType
-                        .number, // Set keyboard type to number for price input
+                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 20),
+
+                  // Dropdown for Category and Brand
                   Row(
                     children: [
                       Flexible(
-                          child: DropDownBtn(
-                        items: ['vegetable', 'fruit', 'flower','grossery'],
-                        selectedItemText: ctrl.category,
-                        onSelected: (selectValue) {
-                          ctrl.category = selectValue ?? "general";
-                          ctrl.update();
-                        },
-                      )),
+                        child: DropDownBtn(
+                          items: const ['vegetable', 'fruit', 'flower', 'grossery'],
+                          selectedItemText: ctrl.category,
+                          onSelected: (selectValue) {
+                            ctrl.category = selectValue ?? "general";
+                            ctrl.update();
+                          },
+                        ),
+                      ),
                       Flexible(
-                          child: DropDownBtn(
-                        items: ['low', 'mid', 'high'],
-                        selectedItemText: ctrl.brand,
-                        onSelected: (selectValue) {
-                          ctrl.brand = selectValue ?? "general";
-                           ctrl.update();
-                        },
-                      )),
+                        child: DropDownBtn(
+                          items: const ['low', 'mid', 'high'],
+                          selectedItemText: ctrl.brand,
+                          onSelected: (selectValue) {
+                            ctrl.brand = selectValue ?? "general";
+                            ctrl.update();
+                          },
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(height: 20),
-                  Text('offer on product?'),
+
+                  // Offer Dropdown
+                  Text('Offer on product?'),
                   DropDownBtn(
-                    items: ['true', 'false'],
-                    selectedItemText: ctrl.offer.toString(),
+                    items: const ['none', 'discount', 'limited'],
+                    selectedItemText: ctrl.offer, // Display as string
                     onSelected: (selectValue) {
-                      ctrl.offer = bool.tryParse(selectValue ?? 'false') ?? false;
+                      ctrl.offer = selectValue ?? 'none'; // Assign selected value
                       ctrl.update();
                     },
                   ),
                   SizedBox(height: 20),
+
+                  // Add Product Button
                   ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.indigoAccent,
-                          foregroundColor: Colors.white),
-                      onPressed: () {
-                        ctrl.addProduct();
-                      },
-                      child: const Text('Add product'))
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.indigoAccent,
+                      foregroundColor: Colors.white,
+                    ),
+                    onPressed: () {
+                      ctrl.addProduct();
+                    },
+                    child: const Text('Add Product'),
+                  ),
                 ],
               ),
             ),
           ),
         );
-      }
+      },
     );
   }
 }

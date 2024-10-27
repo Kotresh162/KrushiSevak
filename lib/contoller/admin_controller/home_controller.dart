@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:krushisevak/models/product.dart';
-
+import 'package:krushisevak/models/product_model/product.dart';
 
 class HomeController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -13,10 +12,9 @@ class HomeController extends GetxController {
   TextEditingController textdescriptionctrl = TextEditingController();
   TextEditingController textpricectrl = TextEditingController();
 
-  
   String category = "general"; 
   String brand = "none";       
-  bool offer = false;          
+  String offer = "none";  // Changed from bool to String      
   List<Product> products = [];
 
   @override
@@ -35,7 +33,7 @@ class HomeController extends GetxController {
         price: double.tryParse(textpricectrl.text),
         brand: brand,
         category: category,
-        offer: offer,
+        offer: offer,  // Updated offer type
         image: textimagectrl.text,
         description: textdescriptionctrl.text,
       );
@@ -43,10 +41,7 @@ class HomeController extends GetxController {
       final productJson = product.toJson();
       doc.set(productJson);
       
-      
       Get.snackbar('Success', 'Product added successfully', colorText: Colors.green);
-      
-      
       setDefaultValues();
       
     } catch (e) {
@@ -55,14 +50,12 @@ class HomeController extends GetxController {
   }
 
   Stream<List<Product>> fetchProductsStream() {
-  return productCollection.snapshots().map((snapshot) {
-    return snapshot.docs
-        .map((doc) => Product.fromJson(doc.data() as Map<String, dynamic>))
-        .toList();
-  });
-}
-
-
+    return productCollection.snapshots().map((snapshot) {
+      return snapshot.docs
+          .map((doc) => Product.fromJson(doc.data() as Map<String, dynamic>))
+          .toList();
+    });
+  }
 
   deleteProduct(String id) async {
     try {
@@ -71,9 +64,8 @@ class HomeController extends GetxController {
       Get.snackbar('Failed', e.toString(), colorText: Colors.red);
     }
   }
-  
+
   void setDefaultValues() {
-    
     textnamectrl.clear();
     textimagectrl.clear();
     textdescriptionctrl.clear();
@@ -81,7 +73,7 @@ class HomeController extends GetxController {
     
     category = "general"; 
     brand = "none";       
-    offer = false;        
+    offer = "none";  // Updated to default string value        
     update();
   }
 }

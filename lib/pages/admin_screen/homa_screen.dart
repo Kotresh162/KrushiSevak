@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:krushisevak/contoller/home_controller.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:krushisevak/contoller/admin_controller/home_controller.dart';
 import 'package:krushisevak/pages/admin_screen/add_product_page.dart';
-import 'package:krushisevak/models/product.dart';
+import 'package:krushisevak/models/product_model/product.dart';
+import 'package:krushisevak/pages/login_screen.dart';
 
 class HomaScreen extends StatelessWidget {
   const HomaScreen({super.key});
@@ -14,6 +16,16 @@ class HomaScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product List'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              final box = GetStorage();
+              box.erase(); // Clears stored data
+              Get.off(() => LoginScreen()); // Navigate back to LoginScreen
+            },
+            icon: Icon(Icons.logout),
+          ),
+        ],
       ),
       body: StreamBuilder<List<Product>>(
         stream: ctrl.fetchProductsStream(),
@@ -28,13 +40,20 @@ class HomaScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: products.length,
             itemBuilder: (context, index) {
+              final product = products[index];
               return ListTile(
-                title: Text(products[index].name ?? ""),
-                subtitle: Text((products[index].price ?? 0).toString()),
+                title: Text(product.name ?? ""),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Price: ${(product.price ?? 0).toString()}"),
+                    Text("Offer: ${product.offer ?? 'none'}"), // Display the offer as a string
+                  ],
+                ),
                 trailing: IconButton(
                   icon: Icon(Icons.delete),
                   onPressed: () {
-                    ctrl.deleteProduct(products[index].id ?? "");
+                    ctrl.deleteProduct(product.id ?? "");
                   },
                 ),
               );

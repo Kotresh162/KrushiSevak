@@ -12,7 +12,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       description: json['description'] as String?,
       category: json['category'] as String?,
       image: json['image'] as String?,
-      offer: json['offer'] as bool?,
+      offer: json['offer'] as String?,
       price: (json['price'] as num?)?.toDouble(),
       brand: json['brand'] as String?,
     );

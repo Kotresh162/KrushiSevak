@@ -20,6 +20,8 @@ dependencies:
   get: ^4.6.6
   dropdown_button2: ^2.3.9
   json_annotation: ^4.9.0
+  get_storage: ^2.1.1
+  otp_text_field_v2: ^1.0.3
 
 dev_dependencies:
   flutter_test:

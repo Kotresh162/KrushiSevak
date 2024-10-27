@@ -1,24 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:krushisevak/contoller/register_controller.dart';
+import 'package:krushisevak/pages/login_screen.dart';
 
-class RegistrationController extends GetxController {
-  var mobileNumber = ''.obs;
-  var password = ''.obs;
-  var userRole = ''.obs; // Variable for storing user role
-
-  void register() {
-    // Handle registration logic
-    if (mobileNumber.value.isNotEmpty &&
-        password.value.isNotEmpty &&
-        userRole.value.isNotEmpty) {
-      
-      // Proceed with registration logic
-      Get.snackbar('Success', 'Account created successfully as ${userRole.value}');
-    } else {
-      Get.snackbar('Error', 'Please fill in all fields');
-    }
-  }
-}
 
 class RegisterScreen extends StatelessWidget {
   final RegistrationController controller = Get.put(RegistrationController());
@@ -64,9 +48,9 @@ class RegisterScreen extends StatelessWidget {
                 controller.password.value = value;
               },
               decoration: InputDecoration(
-                labelText: 'Password',
+                labelText: 'password',
                 border: OutlineInputBorder(),
-                hintText: 'Create a password',
+                hintText: 'password',
               ),
             ),
             SizedBox(height: 20),
@@ -88,13 +72,13 @@ class RegisterScreen extends StatelessWidget {
                   selectedColor: Colors.white,
                   fillColor: Colors.deepPurple,
                   borderRadius: BorderRadius.circular(10),
-                  children: [
+                  children: const[
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text('Admin'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text('Client'),
                     ),
                   ],
@@ -112,7 +96,7 @@ class RegisterScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Get.back(); // Go back to the previous screen
+                Get.to(LoginScreen()); // Go back to the previous screen
               },
               child: const Text('Already have an account? Login'),
             ),
