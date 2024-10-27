@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:krushisevak/contoller/home_controller.dart';
-import 'package:krushisevak/pages/homa_screen.dart';
+// import 'package:krushisevak/pages/admin_screen/homa_screen.dart';
 import 'package:get/get.dart';
+import 'package:krushisevak/pages/client/client_home_screen.dart';
+// import 'package:krushisevak/pages/login_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomaScreen(),
+      home: const ClientHomeScreen(),
     );
   }
 }

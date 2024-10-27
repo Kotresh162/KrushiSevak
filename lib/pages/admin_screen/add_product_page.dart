@@ -36,6 +36,7 @@ class _AddProductPageState extends State<AddProductPage> {
         
                   // Product Name TextField
                   TextField(
+                    controller: ctrl.textnamectrl,
                     decoration: InputDecoration(
                       labelText: 'Product Name',
                       labelStyle: TextStyle(color: Colors.grey),
@@ -57,6 +58,7 @@ class _AddProductPageState extends State<AddProductPage> {
                   // Product Description TextField
                   TextField(
                     maxLines: 4, // Allows for multiple lines of text
+                    controller: ctrl.textdescriptionctrl,
                     decoration: InputDecoration(
                       labelText: 'Product Description',
                       labelStyle: TextStyle(color: Colors.grey),
@@ -77,6 +79,7 @@ class _AddProductPageState extends State<AddProductPage> {
         
                   // Image URL TextField
                   TextField(
+                    controller: ctrl.textimagectrl,
                     decoration: InputDecoration(
                       labelText: 'Image URL',
                       labelStyle: TextStyle(color: Colors.grey),
@@ -97,6 +100,7 @@ class _AddProductPageState extends State<AddProductPage> {
         
                   // Price TextField
                   TextField(
+                    controller: ctrl.textpricectrl,
                     decoration: InputDecoration(
                       labelText: 'Price',
                       labelStyle: TextStyle(color: Colors.grey),
@@ -120,18 +124,20 @@ class _AddProductPageState extends State<AddProductPage> {
                     children: [
                       Flexible(
                           child: DropDownBtn(
-                        items: ['cate1', 'cate2', 'cate3'],
-                        selectedItemText: 'Category',
+                        items: ['vegetable', 'fruit', 'flower','grossery'],
+                        selectedItemText: ctrl.category,
                         onSelected: (selectValue) {
-                          print(selectValue);
+                          ctrl.category = selectValue ?? "general";
+                          ctrl.update();
                         },
                       )),
                       Flexible(
                           child: DropDownBtn(
-                        items: ['brand1', 'brand2', 'brand3'],
-                        selectedItemText: 'brand',
+                        items: ['low', 'mid', 'high'],
+                        selectedItemText: ctrl.brand,
                         onSelected: (selectValue) {
-                          print(selectValue);
+                          ctrl.brand = selectValue ?? "general";
+                           ctrl.update();
                         },
                       )),
                     ],
@@ -140,15 +146,20 @@ class _AddProductPageState extends State<AddProductPage> {
                   Text('offer on product?'),
                   DropDownBtn(
                     items: ['true', 'false'],
-                    selectedItemText: 'offer ?',
-                    onSelected: (selectValue) {},
+                    selectedItemText: ctrl.offer.toString(),
+                    onSelected: (selectValue) {
+                      ctrl.offer = bool.tryParse(selectValue ?? 'false') ?? false;
+                      ctrl.update();
+                    },
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.indigoAccent,
                           foregroundColor: Colors.white),
-                      onPressed: () {},
+                      onPressed: () {
+                        ctrl.addProduct();
+                      },
                       child: const Text('Add product'))
                 ],
               ),

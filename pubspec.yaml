@@ -19,6 +19,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   get: ^4.6.6
   dropdown_button2: ^2.3.9
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
