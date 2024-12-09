@@ -1,16 +1,26 @@
-# krushisevak
+# KRUSHI SEVAK
 
-A new Flutter project.
+#The new trend in the farmer society.
+APP FEATURES:
+#Farmers can sell thier product to stores directly
+#Crops data at present.
+#Guidance from the agriculture Universities and Knowledged persons.
+#Local Community
+#The govt facilities introduction.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+AI INTRODUCTION TO REVOLUTIONIZED FARMING P2B SOCIETY.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+FOR SUPPORT : NEED TO REACH OUT 
+kotreshsh162@gmail.com
+
+
+
+
+
+
+
+
